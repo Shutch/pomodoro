@@ -38,3 +38,9 @@ a {
   color: #42b983;
 }
 </style>
+
+<style lang="postcss" scoped>
+p {
+  @apply border;
+}
+</style>
