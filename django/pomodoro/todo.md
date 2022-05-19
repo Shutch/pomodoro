@@ -5,4 +5,5 @@
 [ ] cookie to remember settings
 [ ] record timers in database
 [ ] Play sound when timer is done
-[ ] Fix button latching CSS for timer type selection
+[X] Fix button latching CSS for timer type selection
+[ ] Update title with time

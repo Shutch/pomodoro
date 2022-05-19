@@ -59,21 +59,39 @@ function stopTimer() {
   timerState.isRunning = false;
 }
 
+function resetTimer() {
+  timerState.isRunning = false;
+  timerState.current = timerState.startTime;
+}
+
+function exclusiveButtonFocus(buttonId) {
+  $("#pomodoro").toggleClass("bg-sky-500", true).toggleClass("bg-sky-700", false);
+  $("#short_break").toggleClass("bg-sky-500", true).toggleClass("bg-sky-700", false);
+  $("#long_break").toggleClass("bg-sky-500", true).toggleClass("bg-sky-700", false);
+  $(buttonId).toggleClass("bg-sky-500", false).toggleClass("bg-sky-700", true);
+}
+
 $(function() {
   $("#pomodoro").click(function(event) {
     setTimer("25:00");
+    exclusiveButtonFocus(this);
   });
   $("#short_break").click(function(event) {
     setTimer("00:10");
+    exclusiveButtonFocus(this);
   });
   $("#long_break").click(function(event) {
     setTimer("20:00");
+    exclusiveButtonFocus(this);
   });
   $("#start").click(function(event) {
     startTimer();
   });
   $("#stop").click(function(event) {
     stopTimer();
+  });
+  $("#reset").click(function(event) {
+    resetTimer();
   });
 });
 // $("p").addClass("myClass yourClass");
