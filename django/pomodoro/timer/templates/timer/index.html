@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+  <script src="{% static '/timer/timer.js' %}"></script>
+{% endblock head %}
+
+{% block content %}
+    <div id="timer_type" class="p-6 flex flex-col sm:flex-row max-w-md sm:max-w-2xl mx-auto place-items-center gap-1 ">
+      <button type="button" id="pomodoro"    class="bg-sky-500 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Pomodoro</button>
+      <button type="button" id="short_break" class="bg-sky-500 hover:bg-sky-600 active:bg-sky-800 focus:outline-none focus:bg-sky-700 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Short Break</button>
+      <button type="button" id="long_break"  class="bg-sky-500 hover:bg-sky-600 active:bg-sky-800 focus:outline-none focus:bg-sky-700 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Long Break</button>
+    </div>
+    <div class="p-4 flex justify-center">
+      <p id="timer" class="font-bold text-8xl">00:00</p>
+    </div>
+    <div class="p-6 flex flex-col sm:flex-row max-w-md sm:max-w-lg mx-auto place-items-center gap-2 sm:gap-6 ">
+      <button type="button" id="start" class="bg-green-500 hover:bg-green-600 active:bg-green-700 border-green-900 border text-white font-bold py-2 flex-auto w-full ring-t-2">Start</button>
+      <button type="button" id="stop"  class="bg-red-500 hover:bg-red-600 active:bg-red-700 border-red-900 border text-white font-bold py-2 flex-auto w-full">Stop</button>
+      <button type="button" id="reset" class="bg-gray-200 hover:bg-gray-300 active:bg-gray-400 border-gray-600 border text-gray-800 font-bold py-2 flex-auto w-full">Reset</button>
+    </div>
+{% endblock content %}
