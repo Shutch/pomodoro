@@ -7,22 +7,24 @@ var timerState = {
   trackerIsOpen: false,
 }
 
+var baseTitle = undefined;
+
 var timerType = {
   pomodoro: "25:00",
   shortBreak: "05:00",
   longBreak: "20:00",
 }
 
-function setTimer(time) {
-  timerState.current = time;
-  timerState.startTime = time;
-  timerState.isRunning = false;
-  $("#timer").text(time);
-}
-
 function updateTimer(time) {
   timerState.current = time;
   $("#timer").text(time);
+  document.title = "(" + time + ") " + baseTitle;
+}
+
+function setTimer(time) {
+  timerState.startTime = time;
+  timerState.isRunning = false;
+  updateTimer(time);
 }
 
 function sleep(ms) {
@@ -31,7 +33,6 @@ function sleep(ms) {
 
 async function startTimer() {
   timerState.isRunning = true;
-  console.log("Timer starting")
   await sleep(1000);
   while (timerState.isRunning) {
     let times = timerState.current.split(":");
@@ -40,7 +41,6 @@ async function startTimer() {
       let minutes = Number(times[0]);
       if (minutes == 0) {  // timer is complete
         timerState.isRunning = false;
-        console.log("Timer complete")
       } else {  // rollover minutes
         let newTime = String(minutes - 1).padStart(2, '0') + ":59";
         updateTimer(newTime);
@@ -62,6 +62,7 @@ function stopTimer() {
 function resetTimer() {
   timerState.isRunning = false;
   timerState.current = timerState.startTime;
+  updateTimer(timerState.startTime);
 }
 
 function exclusiveButtonFocus(buttonId) {
@@ -72,12 +73,14 @@ function exclusiveButtonFocus(buttonId) {
 }
 
 $(function() {
+  baseTitle = document.title;
+
   $("#pomodoro").click(function(event) {
     setTimer("25:00");
     exclusiveButtonFocus(this);
   });
   $("#short_break").click(function(event) {
-    setTimer("00:10");
+    setTimer("05:00");
     exclusiveButtonFocus(this);
   });
   $("#long_break").click(function(event) {
@@ -91,6 +94,7 @@ $(function() {
     stopTimer();
   });
   $("#reset").click(function(event) {
+    console.log(timerState);
     resetTimer();
   });
 });

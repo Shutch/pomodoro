@@ -6,4 +6,4 @@
 [ ] record timers in database
 [ ] Play sound when timer is done
 [X] Fix button latching CSS for timer type selection
-[ ] Update title with time
+[X] Update title with time
