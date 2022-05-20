@@ -1,6 +1,6 @@
 var timerState = {
-  current: undefined,
-  startTime: undefined,
+  current: '00:00',
+  startTime: '00:00',
   isRunning: false,
   description: '',
   id: undefined,
@@ -31,6 +31,10 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function playTimerEndSound() {
+  $("#timer_bell")[0].play();
+}
+
 async function startTimer() {
   timerState.isRunning = true;
   await sleep(1000);
@@ -41,6 +45,7 @@ async function startTimer() {
       let minutes = Number(times[0]);
       if (minutes == 0) {  // timer is complete
         timerState.isRunning = false;
+        playTimerEndSound();
       } else {  // rollover minutes
         let newTime = String(minutes - 1).padStart(2, '0') + ":59";
         updateTimer(newTime);
@@ -80,7 +85,7 @@ $(function() {
     exclusiveButtonFocus(this);
   });
   $("#short_break").click(function(event) {
-    setTimer("05:00");
+    setTimer("00:10");
     exclusiveButtonFocus(this);
   });
   $("#long_break").click(function(event) {
@@ -88,13 +93,14 @@ $(function() {
     exclusiveButtonFocus(this);
   });
   $("#start").click(function(event) {
-    startTimer();
+    if ((timerState.current !== "00:00") && (timerState.isRunning === false)) {
+      startTimer();
+    }
   });
   $("#stop").click(function(event) {
     stopTimer();
   });
   $("#reset").click(function(event) {
-    console.log(timerState);
     resetTimer();
   });
 });
