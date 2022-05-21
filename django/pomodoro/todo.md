@@ -2,7 +2,7 @@
 [X] Add tailwind_css tag to base html (#9 at https://django-tailwind.readthedocs.io/en/latest/installation.html)
 [X] Basic button layout
 [X] Timer countdown
-[ ] Settings to change timer amounts
+[X] Settings to change timer amounts
 [ ] cookie to remember settings
 [X] Play sound when timer is done
 [X] Fix button latching CSS for timer type selection
@@ -12,6 +12,7 @@
 [X] Fix missing favicon
 [X] Fix hitting start multiple times counts the timer down quickly bug
 [X] Fix timer font shifting as time counts down
+[X] Keyboard shortcuts for settings
 
 ## Deploy
 [ ] Package for deployment

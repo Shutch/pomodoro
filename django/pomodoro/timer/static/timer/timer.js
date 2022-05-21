@@ -7,13 +7,14 @@ var timerState = {
   trackerIsOpen: false,
 }
 
-var baseTitle = undefined;
-
 var timerSettings = {
   pomodoro: "25:00",
   shortBreak: "00:05",
   longBreak: "9999:999",
 }
+
+// this is filled from HTML on page load
+var baseTitle = undefined;
 
 function updateTimer(time) {
   timerState.current = time;
@@ -59,7 +60,6 @@ async function startTimer() {
   }
 }
 
-
 function stopTimer() {
   timerState.isRunning = false;
 }
@@ -77,9 +77,19 @@ function exclusiveButtonFocus(buttonId) {
   $(buttonId).toggleClass("bg-sky-500", false).toggleClass("bg-sky-700", true);
 }
 
+function saveSettings() {
+  timerSettings.pomodoro = String($("#pomodoro_minute").val()).padStart(2, '0') + ":" + String($("#pomodoro_second").val()).padStart(2, '0')
+  timerSettings.shortBreak = String($("#short_minute").val()).padStart(2, '0') + ":" + String($("#short_second").val()).padStart(2, '0')
+  timerSettings.longBreak = String($("#long_minute").val()).padStart(2, '0') + ":" + String($("#long_second").val()).padStart(2, '0')
+  $("#settings_modal").toggleClass("hidden", true);
+}
+
+function cancelSettings() {
+  $("#settings_modal").toggleClass("hidden", true);
+}
+
 $(function() {
   baseTitle = document.title;
-
   $("#pomodoro").click(function(event) {
     setTimer(timerSettings.pomodoro);
     exclusiveButtonFocus(this);
@@ -108,10 +118,19 @@ $(function() {
     $("#settings_modal").toggleClass("hidden", false);
   });
   $("#settings_save").click(function(event) {
-    $("#settings_modal").toggleClass("hidden", true);
+    saveSettings();
   });
   $("#settings_cancel").click(function(event) {
-    $("#settings_modal").toggleClass("hidden", true);
+    cancelSettings();
+  });
+  // keyboard shortcuts on settings menu
+  $(document).keydown(function(event) {
+    if (event.which === 13 && $("#settings_modal").hasClass("hidden") === false) {  // enter key
+      saveSettings();
+    }
+    if (event.which === 27 && $("#settings_modal").hasClass("hidden") === false) {  // escape key
+      cancelSettings();
+    }
   });
 });
 // $("p").addClass("myClass yourClass");

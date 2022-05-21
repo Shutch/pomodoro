@@ -50,11 +50,25 @@
     <div id="settings_bg" class="w-full h-full bg-gray-500 bg-opacity-50 top-0 absolute"></div>
     <div id="settings_box" class="p-6 grid grid-cols-3 gap-4 items-center bg-gray-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute">
       <span class="col-start-1 col-end-2 text-2xl font-medium">Settings</span>
+
       <p class="col-start-1 col-span-1 text-center">Pomodoro Length:</p>
-      <input type="number" id="pomodoro_minute" min="00" max="999" placeholder="25"
+      <input type="number" id="pomodoro_minute" min=0 max=99 value=25
              class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
-      <input type="number" id="pomodoro_second" min="00" max="59" placeholder="00"
+      <input type="number" id="pomodoro_second" min=0 max=59 value=0
              class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+
+      <p class="col-start-1 col-span-1 text-center">Short Break Length:</p>
+      <input type="number" id="short_minute" min=0 max=99 value=5
+             class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+      <input type="number" id="short_second" min=0 max=59 value=0
+             class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+
+      <p class="col-start-1 col-span-1 text-center">Long Break Length:</p>
+      <input type="number" id="long_minute" min=0 max=99 value=20
+             class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+      <input type="number" id="long_second" min=0 max=59 value=0
+             class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+
       <button id="settings_save" class="col-start-2 col-span-1 p-2 bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white">Save</button>
       <button id="settings_cancel" class="col-start-3 col-span-1 p-2 bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white">Cancel</button>
     </div>
