@@ -11,6 +11,7 @@
 [X] Work on edge case for start/stop/reset around 00:00 and initialization at 00:00
 [X] Fix missing favicon
 [X] Fix hitting start multiple times counts the timer down quickly bug
+[X] Fix timer font shifting as time counts down
 
 ## Deploy
 [ ] Package for deployment

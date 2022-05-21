@@ -9,10 +9,10 @@ var timerState = {
 
 var baseTitle = undefined;
 
-var timerType = {
+var timerSettings = {
   pomodoro: "25:00",
-  shortBreak: "05:00",
-  longBreak: "20:00",
+  shortBreak: "00:05",
+  longBreak: "9999:999",
 }
 
 function updateTimer(time) {
@@ -81,18 +81,19 @@ $(function() {
   baseTitle = document.title;
 
   $("#pomodoro").click(function(event) {
-    setTimer("25:00");
+    setTimer(timerSettings.pomodoro);
     exclusiveButtonFocus(this);
   });
   $("#short_break").click(function(event) {
-    setTimer("00:10");
+    setTimer(timerSettings.shortBreak);
     exclusiveButtonFocus(this);
   });
   $("#long_break").click(function(event) {
-    setTimer("20:00");
+    setTimer(timerSettings.longBreak);
     exclusiveButtonFocus(this);
   });
   $("#start").click(function(event) {
+    // check for no time or timer already running
     if ((timerState.current !== "00:00") && (timerState.isRunning === false)) {
       startTimer();
     }
@@ -102,6 +103,15 @@ $(function() {
   });
   $("#reset").click(function(event) {
     resetTimer();
+  });
+  $("#settings").click(function(event) {
+    $("#settings_modal").toggleClass("hidden", false);
+  });
+  $("#settings_save").click(function(event) {
+    $("#settings_modal").toggleClass("hidden", true);
+  });
+  $("#settings_cancel").click(function(event) {
+    $("#settings_modal").toggleClass("hidden", true);
   });
 });
 // $("p").addClass("myClass yourClass");
