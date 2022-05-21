@@ -81,6 +81,9 @@ function saveSettings() {
   timerSettings.pomodoro = String($("#pomodoro_minute").val()).padStart(2, '0') + ":" + String($("#pomodoro_second").val()).padStart(2, '0')
   timerSettings.shortBreak = String($("#short_minute").val()).padStart(2, '0') + ":" + String($("#short_second").val()).padStart(2, '0')
   timerSettings.longBreak = String($("#long_minute").val()).padStart(2, '0') + ":" + String($("#long_second").val()).padStart(2, '0')
+  Cookies.set('pomodoro', timerSettings.pomodoro, { expires: 365, path: '' })
+  Cookies.set('shortBreak', timerSettings.shortBreak, { expires: 365, path: '' })
+  Cookies.set('longBreak', timerSettings.longBreak, { expires: 365, path: '' })
   $("#settings_modal").toggleClass("hidden", true);
 }
 
@@ -88,8 +91,22 @@ function cancelSettings() {
   $("#settings_modal").toggleClass("hidden", true);
 }
 
+function loadSettings() {
+  if (Cookies.get('pomodoro')) { timerSettings.pomodoro = Cookies.get('pomodoro') }
+  if (Cookies.get('shortBreak')) { timerSettings.shortBreak = Cookies.get('shortBreak') }
+  if (Cookies.get('longBreak')) { timerSettings.longBreak = Cookies.get('longBreak') }
+
+  $("#pomodoro_minute").defaultValue = Number(timerSettings.pomodoro.split(':')[0]);
+  $("#pomodoro_second").defaultValue = Number(timerSettings.pomodoro.split(':')[1]);
+  $("#short_minute").defaultValue = Number(timerSettings.shortBreak.split(':')[0]);
+  $("#short_second").defaultValue = Number(timerSettings.shortBreak.split(':')[1]);
+  $("#long_minute").defaultValue = Number(timerSettings.longBreak.split(':')[0]);
+  $("#long_second").defaultValue = Number(timerSettings.longBreak.split(':')[1]);
+}
+
 $(function() {
   baseTitle = document.title;
+  loadSettings();
   $("#pomodoro").click(function(event) {
     setTimer(timerSettings.pomodoro);
     exclusiveButtonFocus(this);
@@ -133,5 +150,3 @@ $(function() {
     }
   });
 });
-// $("p").addClass("myClass yourClass");
-// onclick = "document.getElementById('timer').innerHTML = '25:00'"
