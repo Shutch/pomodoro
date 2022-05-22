@@ -13,6 +13,8 @@ var timerSettings = {
   longBreak: "9999:999",
 }
 
+storage = window.localStorage;
+
 // this is filled from HTML on page load
 var baseTitle = undefined;
 
@@ -78,12 +80,12 @@ function exclusiveButtonFocus(buttonId) {
 }
 
 function saveSettings() {
-  timerSettings.pomodoro = String($("#pomodoro_minute").val()).padStart(2, '0') + ":" + String($("#pomodoro_second").val()).padStart(2, '0')
-  timerSettings.shortBreak = String($("#short_minute").val()).padStart(2, '0') + ":" + String($("#short_second").val()).padStart(2, '0')
-  timerSettings.longBreak = String($("#long_minute").val()).padStart(2, '0') + ":" + String($("#long_second").val()).padStart(2, '0')
-  Cookies.set('pomodoro', timerSettings.pomodoro, { expires: 365, path: '' })
-  Cookies.set('shortBreak', timerSettings.shortBreak, { expires: 365, path: '' })
-  Cookies.set('longBreak', timerSettings.longBreak, { expires: 365, path: '' })
+  timerSettings.pomodoro = String($("#pomodoro_minute").val()).padStart(2, '0') + ":" + String($("#pomodoro_second").val()).padStart(2, '0');
+  timerSettings.shortBreak = String($("#short_minute").val()).padStart(2, '0') + ":" + String($("#short_second").val()).padStart(2, '0');
+  timerSettings.longBreak = String($("#long_minute").val()).padStart(2, '0') + ":" + String($("#long_second").val()).padStart(2, '0');
+  storage.setItem('pomodoro', timerSettings.pomodoro);
+  storage.setItem('shortBreak', timerSettings.shortBreak);
+  storage.setItem('longBreak', timerSettings.longBreak);
   $("#settings_modal").toggleClass("hidden", true);
 }
 
@@ -92,9 +94,9 @@ function cancelSettings() {
 }
 
 function loadSettings() {
-  if (Cookies.get('pomodoro')) { timerSettings.pomodoro = Cookies.get('pomodoro') }
-  if (Cookies.get('shortBreak')) { timerSettings.shortBreak = Cookies.get('shortBreak') }
-  if (Cookies.get('longBreak')) { timerSettings.longBreak = Cookies.get('longBreak') }
+  if (storage.getItem('pomodoro')) { timerSettings.pomodoro = storage.getItem('pomodoro') }
+  if (storage.getItem('shortBreak')) { timerSettings.shortBreak = storage.getItem('shortBreak') }
+  if (storage.getItem('longBreak')) { timerSettings.longBreak = storage.getItem('longBreak') }
 
   $("#pomodoro_minute").defaultValue = Number(timerSettings.pomodoro.split(':')[0]);
   $("#pomodoro_second").defaultValue = Number(timerSettings.pomodoro.split(':')[1]);

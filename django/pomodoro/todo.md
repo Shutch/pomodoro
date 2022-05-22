@@ -3,7 +3,7 @@
 [X] Basic button layout
 [X] Timer countdown
 [X] Settings to change timer amounts
-[ ] cookie to remember settings
+[X] cookie to remember settings
 [X] Play sound when timer is done
 [X] Fix button latching CSS for timer type selection
 [X] Update title with time
@@ -13,6 +13,7 @@
 [X] Fix hitting start multiple times counts the timer down quickly bug
 [X] Fix timer font shifting as time counts down
 [X] Keyboard shortcuts for settings
+[X] Switch from cookies to local storage
 
 ## Deploy
 [ ] Package for deployment
