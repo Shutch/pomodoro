@@ -16,9 +16,13 @@
 [X] Switch from cookies to local storage
 
 ## Deploy
+[X] change /timer to / (root)
+[X] Create production and dev settings files, run them based on ENVVAR
+[X] Create docker-compose for dev with mounted volume
+[ ] Create docker-compose for prod with server
 [ ] Package for deployment
 [ ] Deploy on local network for testing
-[ ] Pick hosting platform (render.com, fly.io, heroku, aws)
+[ ] Pick hosting platform (render.com, fly.io, heroku, aws, digitalocean)
 [ ] Deploy on hosting platform
 
 ## After deploy

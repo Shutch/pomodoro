@@ -9,8 +9,8 @@ var timerState = {
 
 var timerSettings = {
   pomodoro: "25:00",
-  shortBreak: "00:05",
-  longBreak: "9999:999",
+  shortBreak: "05:00",
+  longBreak: "20:00",
 }
 
 storage = window.localStorage;
