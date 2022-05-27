@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: ./django
+      dockerfile: Dockerfile.dev
+    entrypoint: python
+    command: manage.py runserver 0.0.0.0:3000
+    environment:
+      DJANGO_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./django/pomodoro:/pomodoro
+    depends_on:
+      - tailwind
+
+  tailwind:
+    build:
+      context: ./django
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./django/pomodoro:/pomodoro
+    entrypoint: python
+    command: manage.py tailwind start
+    environment:
+      DJANGO_ENV: development
