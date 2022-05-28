@@ -2,7 +2,7 @@ import os
 
 env = os.environ.get("DJANGO_ENV")
 
-if env == 'development':
+if env == 'development' or env is None:
     from pomodoro.dev_settings import *
 elif env == 'production':
     from pomodoro.prod_settings import *
