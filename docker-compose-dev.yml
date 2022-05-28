@@ -23,6 +23,6 @@ services:
     volumes:
       - ./django/pomodoro:/pomodoro
     entrypoint: python
-    command: manage.py tailwind start
+    command: manage.py tailwind install && manage.py tailwind start
     environment:
       DJANGO_ENV: development
