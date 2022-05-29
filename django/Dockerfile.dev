@@ -13,6 +13,8 @@ RUN pip install --no-cache-dir -r /requirements.txt
 # Mounted volume for live loading
 WORKDIR /pomodoro
 
+RUN python3 /pomodoro/manage.py tailwind install -v
+
 ENTRYPOINT ["python3"] 
 CMD ["manage.py", "runserver", "0.0.0.0:3000"]
 
