@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pomodoro</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <script src="scripts/jquery-3.6.0.min.js"></script>
+    <script src="scripts/pomodoro.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png">
+
+    <audio id="timer_bell" src="media/bell.mp3" type="audio/mp3"></audio>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to use this page.</noscript>
+    
+    <!-- Title Bar -->
+    <div class="bg-gray-200 p-6">
+      <div class="flex flex-row flex-row max-w-2xl mx-auto place-items-center">
+        <div class="flex-none text-4xl font-bold justify-self-start">TomatoTimer</div>
+        <div class="flex-grow"></div>
+        <button type="button" id="settings"
+                class="flex-none bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white justify-self-end py-2 px-4"
+                data-bs-toggle="modal" data-bs-target="#settings_modal">Settings</button>
+      </div>
+    </div>
+    
+    <!-- Timer type selection -->
+    <div id="timer_type" class="p-6 flex flex-col sm:flex-row max-w-md sm:max-w-2xl mx-auto place-items-center gap-1">
+      <button type="button" id="pomodoro"    class="bg-sky-500 hover:bg-sky-600 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Pomodoro</button>
+      <button type="button" id="short_break" class="bg-sky-500 hover:bg-sky-600 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Short Break</button>
+      <button type="button" id="long_break"  class="bg-sky-500 hover:bg-sky-600 border-sky-900 border text-white font-bold py-2 flex-auto w-full">Long Break</button>
+    </div>
+    
+    <!-- Timer -->
+    <div class="py-4 flex justify-center">
+      <p id="timer" class="font-bold text-8xl text-center tabular-nums">00:00</p>
+    </div>
+    
+    <!-- Timer controls -->
+    <div id="timer_controls" class="p-6 flex flex-col sm:flex-row max-w-md sm:max-w-lg mx-auto place-items-center gap-y-6 sm:gap-x-6 ">
+      <button type="button" id="start" class="bg-green-500 hover:bg-green-600 active:bg-green-700 border-green-900 border text-white    font-bold py-2 flex-auto w-full">Start</button>
+      <button type="button" id="stop"  class="bg-red-500   hover:bg-red-600   active:bg-red-700   border-red-900   border text-white    font-bold py-2 flex-auto w-full">Stop</button>
+      <button type="button" id="reset" class="bg-gray-200  hover:bg-gray-300  active:bg-gray-400  border-gray-600  border text-gray-800 font-bold py-2 flex-auto w-full">Reset</button>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settings_modal" class="w-full h-full hidden transition duration-150 ease-in-out">
+      <div id="settings_bg" class="w-full h-full bg-gray-500 bg-opacity-50 top-0 absolute"></div>
+      <div id="settings_box" class="p-6 grid grid-cols-3 gap-4 items-center bg-gray-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute">
+        <span class="col-start-1 col-end-2 text-2xl font-medium">Settings</span>
+    
+        <p class="col-start-1 col-span-1 text-center">Pomodoro Length:</p>
+        <input type="number" id="pomodoro_minute" min=0 max=99 value=25
+               class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+        <input type="number" id="pomodoro_second" min=0 max=59 value=0
+               class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+    
+        <p class="col-start-1 col-span-1 text-center">Short Break Length:</p>
+        <input type="number" id="short_minute" min=0 max=99 value=5
+               class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+        <input type="number" id="short_second" min=0 max=59 value=0
+               class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+    
+        <p class="col-start-1 col-span-1 text-center">Long Break Length:</p>
+        <input type="number" id="long_minute" min=0 max=99 value=20
+               class="block col-start-2 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+        <input type="number" id="long_second" min=0 max=59 value=0
+               class="block col-start-3 col-span-1 w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 focus:text-gray-800 focus:bg-white focus:border-sky-300 focus:outline-none"/>
+    
+        <button id="settings_save" class="col-start-2 col-span-1 p-2 bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white">Save</button>
+        <button id="settings_cancel" class="col-start-3 col-span-1 p-2 bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white">Cancel</button>
+      </div>
+    </div>
+  </body>
+</html>
