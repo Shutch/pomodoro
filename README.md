@@ -27,5 +27,5 @@ cd nginx/
 # Deployment
 
 There are many ways to deploy a static webpage like this, my preferred method is to put the whole
-folder into an S3 bucket and then use CloudFormation to serve the content. A TLS certificate 
+folder into an S3 bucket and then use CloudFront to serve the content. A TLS certificate 
 can be created with AWS Certificate Manager
