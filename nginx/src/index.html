@@ -21,8 +21,8 @@
     
     <!-- Title Bar -->
     <div class="bg-gray-200 p-6">
-      <div class="flex flex-row flex-row max-w-2xl mx-auto place-items-center">
-        <div class="flex-none text-4xl font-bold justify-self-start">TomatoTimer</div>
+      <div class="flex flex-row gap-2 px-2 flex-row bg-gray-200 max-w-2xl mx-auto place-items-center">
+        <div class="flex-none text-2xl sm:text-4xl font-bold justify-self-start">TomatoTimer</div>
         <div class="flex-grow"></div>
         <button type="button" id="settings"
                 class="flex-none bg-gray-600 hover:bg-gray-700 active:bg-gray-800 border-gray-900 text-white justify-self-end py-2 px-4"
@@ -52,7 +52,7 @@
     <!-- Settings Modal -->
     <div id="settings_modal" class="w-full h-full hidden transition duration-150 ease-in-out">
       <div id="settings_bg" class="w-full h-full bg-gray-500 bg-opacity-50 top-0 absolute"></div>
-      <div id="settings_box" class="p-6 grid grid-cols-3 gap-4 items-center bg-gray-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute">
+      <div id="settings_box" class="w-full sm:w-96 p-6 grid grid-cols-3 gap-4 items-center bg-gray-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute">
         <span class="col-start-1 col-end-2 text-2xl font-medium">Settings</span>
     
         <p class="col-start-1 col-span-1 text-center">Pomodoro Length:</p>
